@@ -71,6 +71,8 @@
                     </div>
 
                 <p>Forget Password <a href="#">Click Here!</a></p>
+
+                
                 <div class="btn-field">
                     <button type="submit" id="SignupBtn">Sign up</button>
                     <button type="button" id="SigninBtn" class="disable">Sign in</button>
