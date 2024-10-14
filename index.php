@@ -1,3 +1,5 @@
+<?php include ("signup.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +13,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="form-boxm" style=" background: #fff;
-    padding: 50px 40px 70px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);"> 
+        <div class="form-boxm"> 
             <h1 id="title">Sign Up</h1>
-            <form name="userForm" onsubmit="return validateForm()">
-                <div class="input-group gridbox" style="display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;">
+            <form name="userForm" action="signup.php" method="POST" onsubmit="return validateForm()">
+                 <div class="input-group gridbox" style="display: grid;
+                    grid-template-columns: auto auto;
+                    gap: 10px;">
                     <!-- <div class="input-field" id="id">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" name="id" placeholder="ID" required>
@@ -28,12 +26,14 @@
 
                     <div class="input-field" id="first_name">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" name="first_name" placeholder="First Name" required>   
+                        <input type="text" name="first_name" placeholder="First Name" required>
+                        <div class="error-message" id="first_name_error"></div>    
                     </div>
 
                     <div class="input-field" id="last_name">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" name="last_name" placeholder="Last Name" required>   
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                        <div class="error-message" id="last_name_error"></div>   
                     </div>
 
                     
@@ -41,11 +41,13 @@
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="email" name="email" placeholder="Email" required>
+                        <div class="error-message" id="email_id_error"></div>
                     </div>
 
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" name="password" placeholder="Password" required>
+                        <div class="error-message" id="password_error"></div>
                     </div>
 
                     
@@ -72,7 +74,7 @@
 
                 <p>Forget Password <a href="#">Click Here!</a></p>
 
-                
+
                 <div class="btn-field">
                     <button type="submit" id="SignupBtn">Sign up</button>
                     <button type="button" id="SigninBtn" class="disable">Sign in</button>
