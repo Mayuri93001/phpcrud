@@ -1,28 +1,60 @@
-<?php include("signup.php");?>
+<html>
+<head>
+    <title>Dispaly</title>
+    <style>
+        .update, .delete
+        {
+            background-color: green;
+            color: white;
+            border: 0;
+            outline: none;
+            border-radius: 5px;
+            height: 22px;
+            width: 80px;
+            font-weight: bold;
+            cursor: pointer;
+
+        }
+        .delete 
+        {
+            background-color: red;
+        }
+    </style>
+</head>
 
 <?php
-// Fetch data
-$sql = "SELECT first_name, last_name, email_id, address FROM tbl_user";
-$result = $pdo->query($sql); // Use $pdo here
+include("connect.php"); 
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
-// Check if there are results
-if ($result->rowCount() > 0) {
-    // Display data in a table
-    echo "<table border='1'>
+$sql = "SELECT id, first_name, last_name, address, email_id FROM tbl_user";
+$result = $conn->query($sql); 
+
+if ($result && $result->num_rows > 0) {
+    echo " <table border='1'cellspacing = '7' width=100%>
+                <h2><mark>Displaying All Records</mark></h2>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email ID</th>
-                <th>Address</th>
+                <th width=5%>ID</th>
+                <th width=10%>First Name</th>
+                <th width=10%>Last Name</th>
+                <th width=15%>address</th>
+                <th width=25%>email_id</th>
+                <th width=15%>operation</th>
             </tr>";
-    
-    // Output data of each row
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) { // Use fetch() instead of mysqli_fetch_assoc()
+           
+    while ($row = $result->fetch_assoc()) { 
         echo "<tr>
+                <td>" . htmlspecialchars($row['id']) . "</td>
                 <td>" . htmlspecialchars($row['first_name']) . "</td>
                 <td>" . htmlspecialchars($row['last_name']) . "</td>
-                <td>" . htmlspecialchars($row['email_id']) . "</td>
                 <td>" . htmlspecialchars($row['address']) . "</td>
+                <td>" . htmlspecialchars($row['email_id']) . "</td>
+
+                <td><a href='update.php?id=" . htmlspecialchars($row['id']) . "&fn=" . htmlspecialchars($row['first_name']) . "&ln=" . htmlspecialchars($row['last_name']) . "&add=" . htmlspecialchars($row['address']) . "&em=" . htmlspecialchars($row['email_id']) . "'><input type='submit' value='UPDATE' class='update'></a>
+
+                 <a href='delete.php?id=" . htmlspecialchars($row['id']) . "&fn=" . htmlspecialchars($row['first_name']) . "&ln=" . htmlspecialchars($row['last_name']) . "&add=" . htmlspecialchars($row['address']) . "&em=" . htmlspecialchars($row['email_id']) . "'><input type='submit' value='DELETE' class='delete' onclick = 'return checkdelete()'></a></td>
+
               </tr>";
     }
     echo "</table>";
@@ -30,9 +62,18 @@ if ($result->rowCount() > 0) {
     echo "0 results found.";
 }
 
-// Close connection (optional with PDO, as it closes automatically)
-// $pdo = null;
+$conn->close(); 
 ?>
+
+
+<script>
+    function checkdelete()
+    {
+        return confirm('Are you sure to delete these record ?');
+    }
+</script>
+
+
 
 
 

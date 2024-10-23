@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f0f0f0; /* Light background for the body */
+    background-color: #f0f0f0; 
 }
 
 .container {
@@ -135,4 +135,18 @@ p a {
     color: red;
     font-size: 0.9em;
     display: none;
+}
+
+
+.update {
+    background-color: green;
+    color: white;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    height: 22px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+
 }

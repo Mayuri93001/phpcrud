@@ -1,5 +1,3 @@
-<?php include ("signup.php") ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +17,11 @@
                  <div class="input-group gridbox" style="display: grid;
                     grid-template-columns: auto auto;
                     gap: 10px;">
-                    <!-- <div class="input-field" id="id">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" name="id" placeholder="ID" required>
+                   <!-- <div class="input-field" id="id" style="display: none;"> 
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="id" placeholder="ID" required>
                     </div> -->
+
 
                     <div class="input-field" id="first_name">
                         <i class="fa-solid fa-user"></i>
@@ -77,7 +76,6 @@
 
                 <div class="btn-field">
                     <button type="submit" id="SignupBtn">Sign up</button>
-                    <button type="button" id="SigninBtn" class="disable">Sign in</button>
                 </div>
             </form>
         </div>
@@ -90,15 +88,7 @@
 
     <script>
         let signupBtn = document.getElementById("SignupBtn");
-        let signinBtn = document.getElementById("SigninBtn");
         let title = document.getElementById("title");
-
-        function switchToSignIn() {
-            document.getElementById("id").style.display = "none";
-            title.innerHTML = "Sign In";
-            signupBtn.classList.add("disable");
-            signinBtn.classList.remove("disable");
-        }
 
         function switchToSignUp() {
             document.getElementById("id").style.display = "block";
@@ -106,10 +96,8 @@
             signupBtn.classList.remove("disable");
             signinBtn.classList.add("disable");
         }
-
-        signinBtn.addEventListener("click", switchToSignIn);
         signupBtn.addEventListener("click", switchToSignUp);
-
+        
         function validateForm() {
             // Placeholder for form validation logic
             return true; // Change to your validation logic

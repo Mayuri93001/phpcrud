@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect and sanitize input data
+// Collect and sanitize input data
     $first_name = htmlspecialchars(trim($_POST['first_name']));
     $last_name = htmlspecialchars(trim($_POST['last_name']));
     $email = htmlspecialchars(trim($_POST['email']));
@@ -14,21 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dbname = "first_db";
 
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
-
     // Create connection
     $conn = mysqli_connect($servername, $username, $password_db, $dbname);
     
     // Check connection
-    //if (!$conn) {
-      // die("Connection failed: " . mysqli_connect_error());
-    //}
-      // echo "Connection success";
+    if (!$conn) {
+       die("Connection failed: " . mysqli_connect_error());
+    }
+       echo "Connection success";
 
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO tbl_user (first_name, last_name, email_id, password, address) VALUES (?, ?, ?, ?, ?)");
@@ -49,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //error statment
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validate input
-        if (empty($_POST['first_name'])) {
+       if (empty($_POST['first_name'])) {
             echo json_encode(['error' => 'First name is required.']);
             exit;
         }
        
-    }
+        }
 
 
     // Close connections
